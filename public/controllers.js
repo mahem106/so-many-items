@@ -25,7 +25,7 @@ app.controller('itemCtrl', function($scope, $filter, ItemService) {
   }
 
   $scope.predicate = 'type';
-  $scope.reverse = true;
+  $scope.reverse = false;
   $scope.order = function(predicate) {
     $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
     $scope.predicate = predicate;
