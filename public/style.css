@@ -1,0 +1,13 @@
+body {
+  background-color: rgba(66, 91, 221, 0.19);
+}
+ul {
+  background-color: white;
+}
+input {
+  color: rgba(121, 20, 20, 0.9);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.86);
+}
+::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.50);
+}
