@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 
 var Item = require('../models/item');
-var sweetalert = require('sweetalert');
+// var sweetalert = require('sweetalert');
 
 router.get('/', function(req, res) {
   Item.get(function(err, items) {

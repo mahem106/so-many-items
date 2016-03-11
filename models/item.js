@@ -6,7 +6,7 @@
 var fs = require('fs');
 var path = require('path');
 var uuid = require('uuid');
-var sweetalert = require('sweetalert');
+// var sweetalert = require('sweetalert');
 
 var inventoryFilepath = path.join(__dirname, '../data/inventory.json');
 
