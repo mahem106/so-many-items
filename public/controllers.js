@@ -3,7 +3,7 @@
 // No array -> referencing a pre-existing module:
 var app = angular.module('itemApp');
 
-app.controller('itemCtrl', function($scope, ItemService) {
+app.controller('itemCtrl', function($scope, $filter, ItemService) {
 
   ItemService.fetch()
     .then(function(res) {
@@ -23,6 +23,13 @@ app.controller('itemCtrl', function($scope, ItemService) {
         console.error('err: ', err);
       });
   }
+
+  $scope.predicate = 'type';
+  $scope.reverse = true;
+  $scope.order = function(predicate) {
+    $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+    $scope.predicate = predicate;
+  };
 
   $scope.removeItem = function(item) {
     swal({
