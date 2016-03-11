@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3333;
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-var sweetalert = require('sweetalert');
+//var sweetalert = require('sweetalert');
 
 var http = require('http');
 var path = require('path');
