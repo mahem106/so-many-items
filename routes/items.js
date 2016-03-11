@@ -4,11 +4,10 @@ var express = require('express');
 var router = express.Router();
 
 var Item = require('../models/item');
-// var sweetalert = require('sweetalert');
 
 router.get('/', function(req, res) {
   Item.get(function(err, items) {
-    if(err) {
+    if (err) {
       res.status(400).send(err);
       return;
     }
@@ -19,7 +18,7 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
   var id = req.params.id;
   Item.get(function(err, items) {
-    if(err) {
+    if (err) {
       res.status(400).send(err);
       return;
     }
@@ -28,8 +27,10 @@ router.get('/:id', function(req, res) {
       return obj.id === id;
     });
 
-    if(!item) {
-      res.status(404).send({err: "Item not found"});
+    if (!item) {
+      res.status(404).send({
+        err: "Item not found"
+      });
       return;
     }
     res.send(item);
@@ -39,7 +40,7 @@ router.get('/:id', function(req, res) {
 router.post('/', function(req, res) {
   var newItem = req.body;
   Item.create(newItem, function(err) {
-    if(err) {
+    if (err) {
       res.status(400).send(err);
     } else {
       res.send(newItem);
@@ -50,7 +51,7 @@ router.post('/', function(req, res) {
 router.delete('/:id', function(req, res) {
   var id = req.params.id;
   Item.delete(id, function(err) {
-    if(err) {
+    if (err) {
       res.status(400).send(err);
     } else {
       res.send();
@@ -62,7 +63,7 @@ router.put('/:id', function(req, res) {
   var id = req.params.id;
   var updatesObj = req.body;
   Item.update(id, updatesObj, function(err, updatedItem) {
-    if(err) {
+    if (err) {
       res.status(400).send(err);
     } else {
       res.send(updatedItem);
