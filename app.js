@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 3333;
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
-//var sweetalert = require('sweetalert');
 
 var http = require('http');
 var path = require('path');
@@ -14,7 +13,9 @@ var app = express();
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.static('public'));
 
 app.get('/', function(req, res) {

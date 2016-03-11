@@ -1,29 +1,25 @@
 'use strict';
 
-//  Item model
-//  Contains methods to interact with item data
-
 var fs = require('fs');
 var path = require('path');
 var uuid = require('uuid');
-// var sweetalert = require('sweetalert');
 
 var inventoryFilepath = path.join(__dirname, '../data/inventory.json');
 
 exports.get = function(cb) {
   fs.readFile(inventoryFilepath, function(err, data) {
-    if(err) return cb(err);
+    if (err) return cb(err);
     var items = JSON.parse(data);
     cb(null, items);
   });
 };
 
 exports.create = function(newItem, cb) {
-  this.get((err, items) => {  // read and parse
-    if(err) return cb(err);
+  this.get((err, items) => {
+    if (err) return cb(err);
     newItem.id = uuid();
-    items.push(newItem);   // modify
-    this.write(items, cb);  // stringify and write
+    items.push(newItem);
+    this.write(items, cb);
   });
 };
 
@@ -36,9 +32,6 @@ exports.getById = function() {
 }
 
 exports.delete = function(id, cb) {
-  // get the array of items
-  // remove the item with the given id from the array
-  // write the modified array back to the db
 
   this.get((err, items) => {
 
@@ -48,8 +41,10 @@ exports.delete = function(id, cb) {
       return item.id !== id;
     });
 
-    if(length === items.length) {
-      cb( {err: "Item not found."} );
+    if (length === items.length) {
+      cb({
+        err: "Item not found."
+      });
       return;
     }
 
@@ -59,18 +54,13 @@ exports.delete = function(id, cb) {
 
 
 exports.update = function(id, updatesObj, cb) {
-  // find the item with the given id
-  // update that item with the object
-  // save the modified items array to db
-  // cb with updated item
-
   this.get((err, items) => {
     var updatedItem;
 
     items = items.map(function(item) {
-      if(item.id === id) {
+      if (item.id === id) {
         // do the update
-        for(var key in updatesObj) {
+        for (var key in updatesObj) {
           item[key] = updatesObj[key];
         }
         updatedItem = item;
@@ -78,8 +68,10 @@ exports.update = function(id, updatesObj, cb) {
       return item;
     });
 
-    if(!updatedItem) {
-      cb( {err: "Item not found."} );
+    if (!updatedItem) {
+      cb({
+        err: "Item not found."
+      });
       return;
     }
 

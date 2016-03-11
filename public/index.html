@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Items, So Many Items!!!</title>
+  <head>
+    <meta charset="UTF-8">
+    <title>Items, So Many Items!!!</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
-  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
-  <script src="dist/sweetalert.min.js"></script>
-  <script src="module.js"></script>
-  <script src="controllers.js"></script>
-  <script src="services.js"></script>
-</head>
-<body ng-app='itemApp' ng-controller='itemCtrl'>
-  <h1 class="container">Items, So Many Items!!!</h1>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="dist/sweetalert.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
+    <script src="dist/sweetalert.min.js"></script>
+    <script src="module.js"></script>
+    <script src="controllers.js"></script>
+    <script src="services.js"></script>
+  </head>
+  <body ng-app='itemApp' ng-controller='itemCtrl'>
+    <h1 class="container">Items, So Many Items!!!</h1>
     <div class="container">
       <table>
         <thead>
-          <th><h5>ADD NEW ITEM:</h5></th>
+          <th>
+            <h5>ADD NEW ITEM:</h5>
+          </th>
         </thead>
         <tbody>
           <tr>
@@ -31,9 +33,11 @@
           <tr>
             <td width="30%"><input ng-model='newItem.imgURL' type="text" placeholder="Image URL"></td>
             <td width="50%" class="col s5"><input ng-model='newItem.notes' type="text" placeholder="Notes"></td>
-            <td width="30%" class="center-align"><button class="waves-effect waves-light btn" ng-click='addItem()'>Add Item</button></td>
+            <td width="30%" class="center-align">
+              <button class="waves-effect waves-light btn" ng-click='addItem()'>Add Item</button>
+            </td>
           </tr>
-          </tbody>
+        </tbody>
       </table>
     </div>
     <div class="divider"></div>
@@ -41,78 +45,88 @@
     <div class="container">
       <table>
         <thead>
-          <th><h5>Sort by:</h5></th>
+          <th>
+            <h5>Sort by:</h5>
+          </th>
           <th>
             <button class="waves-effect waves-light btn" ng-click="order('name')">Name</button>
-            <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}">
-          </th>
-          <th>
-            <button class="waves-effect waves-light btn" ng-click="order('qty')">Quantity</button>
-            <span class="sortorder" ng-show="predicate === 'qty'" ng-class="{reverse:reverse}">
-          </th>
-          <th>
-            <button class="waves-effect waves-light btn" ng-click="order('type')">Type</button>
-            <span class="sortorder" ng-show="predicate === 'type'" ng-class="{reverse:reverse}">
-          </th>
-          <th><input type="text" ng-model="searchText" placeholder="Search"></th>
-        </thead>
-      </table>
-        <ul class="collapsible" data-collapsible="accordion" watch>
-          <li class="hoverable" ng-repeat="item in items | filter:searchText | orderBy:predicate:reverse track by item.id">
-            <div class="collapsible-header">
-              <table>
-                <thead>
-                  <th class="left-align">
-                    <h5>
-                      <span><img ng-src="{{item.imgURL}}" style="max-height:30px;max-width:30px;min-height:30px;min-width:30px;" />  {{item.name}}</span>
-                    </h5>
-                  </th>
-                  <th class="right-align">
-                    <h5>
-                      <span>{{item.type}}</span>
-                    </h5>
-                  </th>
-                </thead>
-              </table>
-            </div>
-            <div class="collapsible-body">
-            <table>
-              <thead>
-                <th>Type:</th>
-                <th>Name:</th>
-                <th>Quantity:</th>
+            <span class="sortorder" ng-show="predicate === 'name'" ng-class="{reverse:reverse}"></th>
+            <th>
+              <button class="waves-effect waves-light btn" ng-click="order('qty')">Quantity</button>
+              <span class="sortorder" ng-show="predicate === 'qty'" ng-class="{reverse:reverse}"></th>
+              <th>
+                <button class="waves-effect waves-light btn" ng-click="order('type')">Type</button>
+                <span class="sortorder" ng-show="predicate === 'type'" ng-class="{reverse:reverse}"></th>
+                <th><input type="text" ng-model="searchText" placeholder="Search"></th>
               </thead>
-              <tbody>
-                <tr>
-                  <td class="col s3">{{item.type}}</td>
-                  <td class="col s3">{{item.name}}</td>
-                  <td class="col s3">{{item.qty | number : fractionSize}}</td>
-                  <td class="col s3">
-                    <button ng-click="editItem(item)" class="waves-effect waves-light btn"><i class="material-icons center">edit</i></button>
-                    <button ng-click="removeItem(item)" class="waves-effect waves-light btn"><i class="material-icons center">delete</i></button>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="col s3"><img ng-src="{{item.imgURL}}" style="max-height:125px;max-width:125px;" /></td>
-                  <td class="col s3 flow-text"><h5>Notes: </h5>{{item.notes}}</td>
-                </tr>
-              </tbody>
             </table>
-            <div ng-show="itemToEdit">
-              <div class="container">
-                <h5>Edit Item:</h5>
-                <label>Image URL:</label><input ng-model='itemToEdit.imgURL' type="text" placeholder="Image URL">
-                <label>Type:</label><input ng-model='itemToEdit.type' type="text" placeholder="Type">
-                <label>Name:</label><input ng-model='itemToEdit.name' type="text" placeholder="Name">
-                <label>Quantity:</label><input ng-model='itemToEdit.qty' type="text" placeholder="Quantity">
-                <label>Notes:</label><input ng-model='itemToEdit.notes' type="text" placeholder="Notes">
-                <button ng-click="cancel()" class="modal-trigger3 waves-effect waves-light btn"><i class="material-icons center">cancel</i></button>
-                <button ng-click="saveEdit()" class="modal-trigger3 waves-effect waves-light btn"><i class="material-icons center">check</i></button>
-              </div>
-            </div>
+            <ul class="collapsible" data-collapsible="accordion" watch>
+              <li class="hoverable" ng-repeat="item in items | filter:searchText | orderBy:predicate:reverse track by item.id">
+                <div class="collapsible-header">
+                  <table>
+                    <thead>
+                      <th class="left-align">
+                        <h5>
+                          <span><img ng-src="{{item.imgURL}}" style="max-height:30px;max-width:30px;min-height:30px;min-width:30px;"/>
+                            {{item.name}}</span>
+                        </h5>
+                      </th>
+                      <th class="right-align">
+                        <h5>
+                          <span>{{item.type}}</span>
+                        </h5>
+                      </th>
+                    </thead>
+                  </table>
+                </div>
+                <div class="collapsible-body">
+                  <table>
+                    <thead>
+                      <th>Type:</th>
+                      <th>Name:</th>
+                      <th>Quantity:</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="col s3">{{item.type}}</td>
+                        <td class="col s3">{{item.name}}</td>
+                        <td class="col s3">{{item.qty | number : fractionSize}}</td>
+                        <td class="col s3">
+                          <button ng-click="editItem(item)" class="waves-effect waves-light btn">
+                            <i class="material-icons center">edit</i>
+                          </button>
+                          <button ng-click="removeItem(item)" class="waves-effect waves-light btn">
+                            <i class="material-icons center">delete</i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="col s3"><img ng-src="{{item.imgURL}}" style="max-height:125px;max-width:125px;"/></td>
+                        <td class="col s3 flow-text">
+                          <h5>Notes:
+                          </h5>{{item.notes}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div ng-show="itemToEdit">
+                    <div class="container">
+                      <h5>Edit Item:</h5>
+                      <label>Image URL:</label><input ng-model='itemToEdit.imgURL' type="text" placeholder="Image URL">
+                      <label>Type:</label><input ng-model='itemToEdit.type' type="text" placeholder="Type">
+                      <label>Name:</label><input ng-model='itemToEdit.name' type="text" placeholder="Name">
+                      <label>Quantity:</label><input ng-model='itemToEdit.qty' type="text" placeholder="Quantity">
+                      <label>Notes:</label><input ng-model='itemToEdit.notes' type="text" placeholder="Notes">
+                      <button ng-click="cancel()" class="modal-trigger3 waves-effect waves-light btn">
+                        <i class="material-icons center">cancel</i>
+                      </button>
+                      <button ng-click="saveEdit()" class="modal-trigger3 waves-effect waves-light btn">
+                        <i class="material-icons center">check</i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
-        </li>
-      </ul>
-    </div>
-</body>
-</html>
+        </body>
+      </html>

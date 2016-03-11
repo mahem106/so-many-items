@@ -1,6 +1,5 @@
 'use strict';
 
-// No array -> referencing a pre-existing module:
 var app = angular.module('itemApp');
 
 app.controller('itemCtrl', function($scope, $filter, ItemService) {
@@ -70,13 +69,13 @@ app.controller('itemCtrl', function($scope, $filter, ItemService) {
       confirmButtonText: "Yep, I'm sure!",
       closeOnConfirm: false
     }, function() {
-    var editItem = $scope.itemToEdit;
-    $scope.itemToEdit = null;
-    ItemService.update(editItem)
-      .then(function(res) {
-        $scope.items.splice(itemIndex, 1, res.data);
-        itemIndex = '';
-      })
+      var editItem = $scope.itemToEdit;
+      $scope.itemToEdit = null;
+      ItemService.update(editItem)
+        .then(function(res) {
+          $scope.items.splice(itemIndex, 1, res.data);
+          itemIndex = '';
+        })
       swal("Edited successfully!", "", "success");
     })
   }
